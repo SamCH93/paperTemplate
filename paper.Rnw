@@ -58,9 +58,9 @@ E-mail: \href{mailto:email@email.com}{email@email.com}}
 %% Useful commands
 %% ----------------------------------------------------------------------------
 %% Shortforms
-\newcommand{\eg}{\latin{e.\,g.}} % e.g.
-\newcommand{\ie}{\latin{i.\,e.}} % i.e.
-\newcommand{\cf}{\latin{cf}} % cf
+\newcommand{\eg}{\textit{e.\,g.}} % e.g.
+\newcommand{\ie}{\textit{i.\,e.}} % i.e.
+\newcommand{\cf}{\textit{cf}} % cf
 %% Distributions
 \DeclareMathOperator{\Ber}{B} % Bernoulli
 \DeclareMathOperator{\Bin}{Bin} % Binomial Distribution
