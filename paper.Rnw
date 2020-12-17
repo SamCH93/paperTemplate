@@ -1,5 +1,5 @@
-% Template for a scientific paper by Samuel Pawel
-% Last modification: 17. December 2020
+%% Template for a scientific paper by Samuel Pawel
+%% Last modification: 17. December 2020
 \documentclass[a4paper, 11pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -16,7 +16,8 @@
 \usepackage[toc, page]{appendix} % better appendices
 \usepackage{nameref} % reference appendices with names
 
-% margins %
+%% margins
+%% ----------------------------------------------------------------------------
 \usepackage{geometry}
  \geometry{
  a4paper,
@@ -27,19 +28,37 @@
  bottom=20mm,
  }
 
-\title{\vspace{-2em}\textbf{Lorem ipsum dolor sit amet}}
-\author{\textbf{Author names} \\
-Affilitation, Country \\
-E-mail: \href{mailto:email@email.com}{email@email.com}}
+%% title, authors, affiliations, mail
+%% ----------------------------------------------------------------------------
+\newcommand\longtitle{Title of the paper}
+\newcommand\shorttitle{\longtitle} % if longtitle too long, change here
+\newcommand\subtitle{subtitle of the paper}
+\newcommand\longauthors{Firstname Lastname}
+\newcommand\shortauthors{\longauthors} % if longauthors too long, change here
+\newcommand\affiliation{
+  Institute, University, Country
+}
+\newcommand\mail{contact@email.com}
+\title{
+  \vspace{-2em}
+  \textbf{\longtitle} \\
+  \subtitle
+}
+\author{
+  \textbf{\longauthors} \\
+  \affiliation \\
+  E-mail: \href{mailto:\mail}{\mail}
+}
 \date{\today} % don't forget to hard-code date when submitting to arXiv!
 
-% hyperref options
+%% hyperref options
+%% ----------------------------------------------------------------------------
 \usepackage{hyperref}  
 \hypersetup{
   bookmarksopen=true, 
   breaklinks=true,
-  pdftitle={Title}, 
-  pdfauthor={Author names},
+  pdftitle={\shorttitle}, 
+  pdfauthor={\shortauthors},
   pdfsubject={},
   pdfkeywords={},
   colorlinks=true,
@@ -49,11 +68,12 @@ E-mail: \href{mailto:email@email.com}{email@email.com}}
   urlcolor=BrickRed,
 }
 
-% Headers and footers
+%% Headers and footers
+%% ----------------------------------------------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{Title}
-\rhead{Authors}
+\lhead{\shorttitle}
+\rhead{\shortauthors}
 
 %% Useful commands
 %% ----------------------------------------------------------------------------
@@ -150,7 +170,7 @@ Word 1, Word 2, Word 3
 % Introduction
 % ======================================================================
 \section{Introduction}
-\citep{Aird2017}
+\citep{Edwards1963}
 
 
 % Methods
@@ -167,7 +187,7 @@ for (i in seq_along(funs)) {
   lines(x, funs[[i]](x), col = i)
 }
 @
-\caption{This is a figure.}
+\caption{This is a Figure.}
 \end{figure}
 
 
