@@ -1,0 +1,189 @@
+% Template for a scientific paper by Samuel Pawel
+% Last modification: 17. December 2020
+\documentclass[a4paper, 11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphics}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{textcomp}
+\usepackage[sc]{mathpazo}
+\usepackage{helvet}
+\usepackage{doi} % automatic doi-links
+\usepackage[round]{natbib} % bibliography
+\usepackage{booktabs} % nicer tables
+\usepackage[toc, page]{appendix} % better appendices
+\usepackage{nameref} % reference appendices with names
+
+% margins %
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=25mm,
+ right=25mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\title{\vspace{-2em}\textbf{Lorem ipsum dolor sit amet}}
+\author{\textbf{Author names} \\
+Affilitation, Country \\
+E-mail: \href{mailto:email@email.com}{email@email.com}}
+\date{\today} % don't forget to hard-code date when submitting to arXiv!
+
+% hyperref options
+\usepackage{hyperref}  
+\hypersetup{
+  bookmarksopen=true, 
+  breaklinks=true,
+  pdftitle={Title}, 
+  pdfauthor={Author names},
+  pdfsubject={},
+  pdfkeywords={},
+  colorlinks=true,
+  linkcolor=RoyalPurple,
+  anchorcolor=black,
+  citecolor=MidnightBlue,
+  urlcolor=BrickRed,
+}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Title}
+\rhead{Authors}
+
+%% Useful commands
+%% ----------------------------------------------------------------------------
+%% Shortforms
+\newcommand{\eg}{\latin{e.\,g.}} % e.g.
+\newcommand{\ie}{\latin{i.\,e.}} % i.e.
+\newcommand{\cf}{\latin{cf}} % cf
+%% Distributions
+\DeclareMathOperator{\Ber}{B} % Bernoulli
+\DeclareMathOperator{\Bin}{Bin} % Binomial Distribution
+\DeclareMathOperator{\Cauchy}{C} % Cauchy Distribution
+\DeclareMathOperator{\Po}{Po} % Poisson
+\DeclareMathOperator{\Exp}{Exp} % Exponential
+\DeclareMathOperator{\Nor}{N} % Normal
+\DeclareMathOperator{\stud}{t} % Student
+\DeclareMathOperator{\Ga}{G} % Gamma
+\DeclareMathOperator{\Be}{Be} % Beta
+%% Operators and special functions
+\DeclareMathOperator{\Var}{Var} % Variance
+\DeclareMathOperator{\E}{\mathsf{E}} % Expectation
+\DeclareMathOperator{\Cov}{Cov} % Covariance
+\DeclareMathOperator{\Corr}{Corr} % Correlation 
+\DeclareMathOperator{\se}{se} % Standard error
+\DeclareMathOperator{\sign}{sign} % Sign
+\DeclareMathOperator{\logit}{logit} % Logit
+\DeclareMathOperator{\Mod}{Mod} % Modus
+\DeclareMathOperator{\Med}{Med} % Median
+\DeclareMathOperator{\diag}{diag} % Diagonalmatrix
+\DeclareMathOperator{\trace}{tr} % Trace
+\renewcommand{\P}{\operatorname{\mathsf{Pr}}} % Probability
+\newcommand{\p}{f} % Density function
+\newcommand{\B}{\operatorname{{B}}} % Beta function
+\newcommand{\Lik}{L} % Likelihood function
+\DeclareMathOperator{\arctanh}{arctanh} % Arcus tangens hyperbolicus
+\DeclareMathOperator*{\argmax}{arg\,max} % Argmax
+\DeclareMathOperator*{\argmin}{arg\,min} % Argmin
+%% Other math things
+\newcommand{\C}{\mathbb{C}} % Complex
+\newcommand{\R}{\mathbb{R}} % Reals
+\newcommand{\Q}{\mathbb{Q}} % Rationals
+\newcommand{\Z}{\mathbb{Z}} % Integers
+\newcommand{\N}{\mathbb{N}} % Naturals
+\newcommand{\given}{\,\vert\,} % Given
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert} % Absolutvalue
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % Norm
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil} % Ceiling
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} % Floor
+\newcommand{\sprod}[1]{\left\langle#1\right\rangle} % Scalarproduct
+\newcommand{\Ind}[2]{\mathsf{I}_{#2}(#1)} % Indicatorfunction
+\newcommand{\IdMat}{\boldsymbol{\mathrm{I}}} % Identity matrix
+\DeclareMathOperator{\BF}{BF} % Bayes factor
+\newcommand\BFsub[2]{\BF_{\scriptscriptstyle{#1:#2}}} % BF with subscript
+\newcommand{\that}{\hat{\theta}} % Effect estimate
+\newcommand{\lw}[1]{W_{\scriptscriptstyle{#1}}} % Lambert W function
+%% ----------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+% knitr options
+% ======================================================================
+<< "main-setup", include = FALSE >>=
+library(knitr)
+opts_chunk$set(fig.height = 4,
+               echo = FALSE,
+               warning = FALSE,
+               message = FALSE,
+               cache = FALSE, 
+               eval = TRUE)
+@
+
+% Abstract
+% ======================================================================
+\begin{center}
+\begin{minipage}{13cm}
+{\small
+\rule{\textwidth}{0.5pt} \\
+{\centering \textbf{Abstract} \\
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+culpa qui officia deserunt mollit anim id est laborum. 
+}
+\rule{\textwidth}{0.4pt} \\
+\textit{Key words}: 
+Word 1, Word 2, Word 3
+}
+\end{minipage}
+\end{center}
+
+
+% Introduction
+% ======================================================================
+\section{Introduction}
+\citep{Aird2017}
+
+
+% Methods
+% ======================================================================
+\section{Methods}
+
+\begin{figure}[!htbp]
+<< "first-figure", fig.height = 3.5 >>=
+x <- seq(-2*pi, 2*pi, 0.01)
+funs <- list(cos, sin, tan)
+plot(NA, NA, ylim = c(-1, 1), xlim = c(-2*pi, 2*pi), las = 1, 
+     xlab = bquote(italic(x)), ylab = bquote(italic(f(x))))
+for (i in seq_along(funs)) {
+  lines(x, funs[[i]](x), col = i)
+}
+@
+\caption{This is a figure.}
+\end{figure}
+
+
+% Bibliography
+% ======================================================================
+\bibliographystyle{apalikedoiurl}
+\bibliography{bibliography}
+
+
+% Appendix
+% ======================================================================
+\begin{appendices}
+
+\section{Appendix title}
+\label{appendix:xxxx}
+
+\end{appendices}
+
+\end{document}
