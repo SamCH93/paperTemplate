@@ -1,38 +1,41 @@
 %% Template for a scientific paper by Samuel Pawel
-%% Last modification: 17. December 2020
+%% Last modification: 14. May 2022
 \documentclass[a4paper, 11pt]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage{graphics}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{amsmath, amssymb}
-\usepackage{textcomp}
-\usepackage[sc]{mathpazo}
-\usepackage{helvet}
+\usepackage[T1]{fontenc} % umlaut characters
+\usepackage[utf8]{inputenc} % utf8 encoding
+\usepackage[english]{babel} % language specific hyphenation
+\usepackage[dvipsnames]{xcolor} % more named colors
+\usepackage{amsmath, amssymb} % math
 \usepackage{doi} % automatic doi-links
 \usepackage[round]{natbib} % bibliography
 \usepackage{booktabs} % nicer tables
-\usepackage[toc, page]{appendix} % better appendices
+\usepackage[title]{appendix} % better appendices
 \usepackage{nameref} % reference appendices with names
+\usepackage[onehalfspacing]{setspace} % more space
+\usepackage[labelfont=bf,font=small]{caption} % customize captions
+% \usepackage{mathpazo} % math and serif font
+% \usepackage[semibold]{sourcesanspro} % sans serif font
+% \usepackage{sectsty} % use different fonts for different sections
+% \allsectionsfont{\sffamily} % for sections use sans serif
+% \usepackage[labelfont={bf,sf},font=small]{caption} % customize captions
 
 %% margins
 %% ----------------------------------------------------------------------------
 \usepackage{geometry}
- \geometry{
- a4paper,
- total={170mm,257mm},
- left=25mm,
- right=25mm,
- top=20mm,
- bottom=20mm,
- }
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=25mm,
+  right=25mm,
+  top=20mm,
+  bottom=20mm,
+}
 
 %% title, authors, affiliations, mail
 %% ----------------------------------------------------------------------------
-\newcommand\longtitle{Title of the paper}
+\newcommand\longtitle{Title of the Paper}
 \newcommand\shorttitle{\longtitle} % if longtitle too long, change here
-\newcommand\subtitle{subtitle of the paper}
+\newcommand\subtitle{Subtitle of the Paper}
 \newcommand\longauthors{Firstname Lastname}
 \newcommand\shortauthors{\longauthors} % if longauthors too long, change here
 \newcommand\affiliation{
@@ -65,7 +68,7 @@
   linkcolor=RoyalPurple,
   anchorcolor=black,
   citecolor=MidnightBlue,
-  urlcolor=BrickRed,
+  urlcolor=black,
 }
 
 %% Headers and footers
@@ -75,66 +78,22 @@
 \lhead{\shorttitle}
 \rhead{\shortauthors}
 
-%% Useful commands
+
+%% custom commands
 %% ----------------------------------------------------------------------------
-%% Shortforms
-\newcommand{\eg}{\textit{e.\,g.\,}} % e.g.
-\newcommand{\ie}{\textit{i.\,e.\,}} % i.e.
-\newcommand{\cf}{\textit{cf\,}} % cf
-%% Distributions
-\DeclareMathOperator{\Ber}{B} % Bernoulli
-\DeclareMathOperator{\Bin}{Bin} % Binomial Distribution
-\DeclareMathOperator{\Cauchy}{C} % Cauchy Distribution
-\DeclareMathOperator{\Po}{Po} % Poisson
-\DeclareMathOperator{\Exp}{Exp} % Exponential
-\DeclareMathOperator{\Nor}{N} % Normal
-\DeclareMathOperator{\stud}{t} % Student
-\DeclareMathOperator{\Ga}{G} % Gamma
-\DeclareMathOperator{\Be}{Be} % Beta
-%% Operators and special functions
-\DeclareMathOperator{\Var}{Var} % Variance
-\DeclareMathOperator{\E}{\mathsf{E}} % Expectation
-\DeclareMathOperator{\Cov}{Cov} % Covariance
-\DeclareMathOperator{\Corr}{Corr} % Correlation 
-\DeclareMathOperator{\se}{se} % Standard error
-\DeclareMathOperator{\sign}{sign} % Sign
-\DeclareMathOperator{\logit}{logit} % Logit
-\DeclareMathOperator{\Mod}{Mod} % Modus
-\DeclareMathOperator{\Med}{Med} % Median
-\DeclareMathOperator{\diag}{diag} % Diagonalmatrix
-\DeclareMathOperator{\trace}{tr} % Trace
-\renewcommand{\P}{\operatorname{\mathsf{Pr}}} % Probability
-\newcommand{\p}{f} % Density function
-\newcommand{\B}{\operatorname{{B}}} % Beta function
-\newcommand{\Lik}{L} % Likelihood function
-\DeclareMathOperator{\arctanh}{arctanh} % Arcus tangens hyperbolicus
-\DeclareMathOperator*{\argmax}{arg\,max} % Argmax
-\DeclareMathOperator*{\argmin}{arg\,min} % Argmin
-%% Other math things
-\newcommand{\C}{\mathbb{C}} % Complex
-\newcommand{\R}{\mathbb{R}} % Reals
-\newcommand{\Q}{\mathbb{Q}} % Rationals
-\newcommand{\Z}{\mathbb{Z}} % Integers
-\newcommand{\N}{\mathbb{N}} % Naturals
-\newcommand{\given}{\,\vert\,} % Given
-\newcommand{\abs}[1]{\left\lvert#1\right\rvert} % Absolutvalue
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % Norm
-\newcommand{\ceil}[1]{\left\lceil#1\right\rceil} % Ceiling
-\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} % Floor
-\newcommand{\sprod}[1]{\left\langle#1\right\rangle} % Scalarproduct
-\newcommand{\Ind}[2]{\mathsf{I}_{#2}(#1)} % Indicatorfunction
-\newcommand{\IdMat}{\boldsymbol{\mathrm{I}}} % Identity matrix
-\DeclareMathOperator{\BF}{BF} % Bayes factor
-\newcommand\BFsub[2]{\BF_{\scriptscriptstyle{#1:#2}}} % BF with subscript
-\newcommand{\that}{\hat{\theta}} % Effect estimate
-\newcommand{\lw}[1]{W_{\scriptscriptstyle{#1}}} % Lambert W function
-%% ----------------------------------------------------------------------------
+\input{defs.tex}
 
 \begin{document}
 \maketitle
 
-% knitr options
-% ======================================================================
+%% Disclaimer that a preprint
+%% -----------------------------------------------------------------------------
+\begin{center}
+  {\color{red}This is a preprint which has not yet been peer reviewed.}
+\end{center}
+
+%% knitr options
+%% -----------------------------------------------------------------------------
 << "main-setup", include = FALSE >>=
 library(knitr)
 opts_chunk$set(fig.height = 4,
@@ -145,40 +104,39 @@ opts_chunk$set(fig.height = 4,
                eval = TRUE)
 @
 
-% Abstract
-% ======================================================================
+%% Abstract
+%% -----------------------------------------------------------------------------
 \begin{center}
-\begin{minipage}{13cm}
-{\small
-\rule{\textwidth}{0.5pt} \\
-{\centering \textbf{Abstract} \\
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-culpa qui officia deserunt mollit anim id est laborum. 
-}
-\rule{\textwidth}{0.4pt} \\
-\textit{Key words}: 
-Word 1, Word 2, Word 3
-}
-\end{minipage}
+  \begin{minipage}{13cm}
+    {\small
+      \rule{\textwidth}{0.5pt} \\
+      {\centering \textbf{Abstract} \\
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum. }
+      \rule{\textwidth}{0.4pt} \\
+      \textit{Keywords}: Word 1, Word 2, Word 3 }
+  \end{minipage}
 \end{center}
 
 
-% Introduction
-% ======================================================================
+%% Introduction
+%% -----------------------------------------------------------------------------
 \section{Introduction}
-\citep{Edwards1963}
+Appendix~\ref{appendix:xxxx} shows that the results in this paper are true, see
+also Figure~\ref{fig:figure} and \citet{Edwards1963}.
 
 
-% Methods
-% ======================================================================
+%% Methods
+%% -----------------------------------------------------------------------------
 \section{Methods}
 
 \begin{figure}[!htbp]
-<< "first-figure", fig.height = 3.5 >>=
+<< "first-figure", fig.height = 3 >>=
 x <- seq(-2*pi, 2*pi, 0.01)
 funs <- list(cos, sin, tan)
 plot(NA, NA, ylim = c(-1, 1), xlim = c(-2*pi, 2*pi), las = 1, 
@@ -188,22 +146,25 @@ for (i in seq_along(funs)) {
 }
 @
 \caption{This is a Figure.}
+\label{fig:figure}
 \end{figure}
 
 
-% Bibliography
-% ======================================================================
-\bibliographystyle{apalikedoiurl}
-\bibliography{bibliography}
-
-
-% Appendix
-% ======================================================================
+%% Appendix
+%% -----------------------------------------------------------------------------
 \begin{appendices}
 
 \section{Appendix title}
 \label{appendix:xxxx}
+Here we proof that $\dots$
 
 \end{appendices}
+
+
+%% Bibliography
+%% -----------------------------------------------------------------------------
+\bibliographystyle{apalikedoiurl}
+\bibliography{bibliography}
+
 
 \end{document}
