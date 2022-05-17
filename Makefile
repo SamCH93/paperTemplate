@@ -1,32 +1,34 @@
-all: pdf
+all: dbuild drun
 
-FILE=paper
-BIB=bibliography
-BIBSTYLE=apalikedoiurl
+FILE = paper
+# BIB = bibliography
+# BIBSTYLE = apalikedoiurl
 
-tex: $(FILE).Rnw $(BIB).bib $(BIBSTYLE).bst
-## generate .tex file from .Rnw file with knitr
-	Rscript -e "library(knitr); knit('$(FILE).Rnw')"
+# ## generate .tex file from .Rnw file with knitr
+# tex: paper/$(FILE).Rnw paper/$(BIB).bib paper/$(BIBSTYLE).bst
+# 	Rscript -e "knitr::knit('paper/$(FILE).Rnw')" --vanilla
 
-pdf: tex
-## generate .pdf file from .tex file
-	pdflatex $(FILE)
-	bibtex $(FILE)
-	pdflatex $(FILE)
-	pdflatex $(FILE)
+# ## generate .pdf file from .tex file
+# pdf: tex
+# 	pdflatex paper/$(FILE)
+# 	bibtex paper/$(FILE)
+# 	pdflatex paper/$(FILE)
+# 	pdflatex paper/$(FILE)
 
-# generate docx file with pandoc 
-## on debian/ubuntu install with sudo apt install pandoc
-## FIXME: references don't work
-docx: tex
-# create copy of tex file as input for pandoc
-	cp ./$(FILE).tex ./$(FILE)Pandoc.tex		
-# use sed to add .pdf extension to file-names in tex file (ugly hack)
-	figures=`ls figure/*.pdf | sed -e 's/\.pdf$///'`; \
-	for f in $$figures; do sed -i "s|$$f|$$f\.pdf|g" ./$(FILE)Pandoc.tex; done	
-# use pandoc to generate .docx from .tex file
-	pandoc $(FILE)Pandoc.tex --bibliography=$(BIB).bib --natbib -o $(FILE).docx
-	
-clean:  
-	rm $(FILE).aux  $(FILE).blg  $(FILE).log  $(FILE).tex  $(FILE).bbl  $(FILE).out $(FILE).brf $(FILE).tex $(FILE).synctex.gz; \
-	rm -r ./figure/
+# ## clean tex files
+# clean:
+# 	rm paper/$(FILE).aux  paper/$(FILE).blg  paper/$(FILE).log \
+# 	paper/$(FILE).tex  paper/$(FILE).bbl paper/$(FILE).out \
+# 	paper/$(FILE).brf paper/$(FILE).tex paper/$(FILE).synctex.gz; \
+# 	rm -r paper/figure/
+
+## build docker image (requires root access for docker)
+dbuild: Dockerfile
+	docker build -t $(FILE) .
+
+## run docker image (requires root access for docker)
+drun: dbuild
+	docker run -v $(CURDIR):/output $(FILE)
+	mv -f paper.tex paper/paper.tex
+# mv -f figure paper/figure
+	cd paper && make pdf2

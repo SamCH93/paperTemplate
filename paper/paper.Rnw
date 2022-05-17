@@ -1,5 +1,5 @@
 %% Template for a scientific paper by Samuel Pawel
-%% Last modification: 14. May 2022
+%% Last modification: 17. May 2022
 \documentclass[a4paper, 11pt]{article}
 \usepackage[T1]{fontenc} % umlaut characters
 \usepackage[utf8]{inputenc} % utf8 encoding
@@ -78,7 +78,6 @@
 \lhead{\shorttitle}
 \rhead{\shortauthors}
 
-
 %% custom commands
 %% ----------------------------------------------------------------------------
 \input{defs.tex}
@@ -95,6 +94,7 @@
 %% knitr options
 %% -----------------------------------------------------------------------------
 << "main-setup", include = FALSE >>=
+## knitr options
 library(knitr)
 opts_chunk$set(fig.height = 4,
                echo = FALSE,
@@ -102,6 +102,13 @@ opts_chunk$set(fig.height = 4,
                message = FALSE,
                cache = FALSE, 
                eval = TRUE)
+
+## should sessionInfo be printed at the end?
+Reproducibility <- TRUE
+
+## Packages
+library(ggplot2) # plotting
+library(ReplicationSuccess) # replication analyses
 @
 
 %% Abstract
@@ -137,13 +144,10 @@ also Figure~\ref{fig:figure} and \citet{Edwards1963}.
 
 \begin{figure}[!htbp]
 << "first-figure", fig.height = 3 >>=
-x <- seq(-2*pi, 2*pi, 0.01)
-funs <- list(cos, sin, tan)
-plot(NA, NA, ylim = c(-1, 1), xlim = c(-2*pi, 2*pi), las = 1, 
-     xlab = bquote(italic(x)), ylab = bquote(italic(f(x))))
-for (i in seq_along(funs)) {
-  lines(x, funs[[i]](x), col = i)
-}
+ggplot(data = iris, aes(x = Sepal.Width, y = Petal.Length, color = factor(Species))) +
+    geom_point() +
+    labs(x = "Sepal width", y = "Petal length", color = "Species") +
+    theme_bw()
 @
 \caption{This is a Figure.}
 \label{fig:figure}
@@ -156,7 +160,7 @@ for (i in seq_along(funs)) {
 
 \section{Appendix title}
 \label{appendix:xxxx}
-Here we proof that $\dots$
+The proof of our claim is left as an exercise to the reader.
 
 \end{appendices}
 
@@ -166,5 +170,12 @@ Here we proof that $\dots$
 \bibliographystyle{apalikedoiurl}
 \bibliography{bibliography}
 
+%% R sessionInfo for reproducibility
+%% -----------------------------------------------------------------------------
+<< "sessionInfo", echo = Reproducibility, results = Reproducibility >>=
+## print R sessionInfo to see system information and package versions
+## used to compile the manuscript (set Reproducibility = FALSE, to not do that)
+sessionInfo()
+@
 
 \end{document}
