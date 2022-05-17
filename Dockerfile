@@ -6,12 +6,6 @@ FROM rocker/verse:4.1
 # ## download and install latex packags
 # ARG pdfDocker
 
-## create a non-root user named docker
-## give them the password "docker" put them in the sudo group
-RUN useradd -d /home/docker -m -s /bin/bash docker \
-    && echo "docker:docker" | chpasswd \
-    && adduser docker sudo
-
 ## directories
 RUN mkdir /output
 RUN mkdir /analysis
@@ -31,9 +25,9 @@ RUN install2.r --error --skipinstalled --ncpus -1 \
 
 ## knit Rnw to tex and compile tex outside docker to pdf
 CMD Rscript -e "knitr::knit('paper.Rnw')" --vanilla \
-    && chown -R docker:docker /output/ \
-    && mv paper.tex /output/
-    # && mv figure/*.pdf /output/figure/
+    && mv paper.tex /output/ \
+    && mkdir -p /output/figure \
+    && mv figure/* /output/figure/
 
 # ## knit Rnw to tex and compile tex inside docker to pdf
 # ## compile tex to pdf inside docker via tinytex
