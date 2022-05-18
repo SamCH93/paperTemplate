@@ -44,3 +44,4 @@ make drun
 
 - [ ] Add .renv support?
 - [ ] Enable pdf compilation from within Docker
+- [ ] GitHub actions integration

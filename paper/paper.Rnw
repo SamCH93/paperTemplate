@@ -137,11 +137,6 @@ library(ReplicationSuccess) # replication analyses
 Appendix~\ref{appendix:xxxx} shows that the results in this paper are true, see
 also Figure~\ref{fig:figure} and \citet{Edwards1963}.
 
-
-%% Methods
-%% -----------------------------------------------------------------------------
-\section{Methods}
-
 \begin{figure}[!htbp]
 << "first-figure", fig.height = 3 >>=
 ggplot(data = iris, aes(x = Sepal.Width, y = Petal.Length, color = factor(Species))) +
@@ -153,6 +148,20 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Petal.Length, color = factor(Specie
 \label{fig:figure}
 \end{figure}
 
+\section*{Software and data}
+All analyses were conducted in the R programming language version
+\Sexpr{paste(version$major, version$minor, sep = ".")}. The code to reproduce
+this manuscript is available at \url{https://github.com/XXXXX/XXXXX}. A snapshot
+of the GitHub repository at the time of writing this article is archived at
+\url{https://doi.org/10.5281/zenodo.XXXXX}.
+
+\section*{Acknowledgements}
+We thank X and Y for Z. Our acknowledgement of these individuals does not imply
+their endorsement of this article. This work was supported by a XYZ grant to X
+(grant number XXXX). The funder had no role in study design, data collection,
+data analysis, data interpretation, decision to publish, or preparation of the
+manuscript.
+
 
 %% Appendix
 %% -----------------------------------------------------------------------------
@@ -160,7 +169,7 @@ ggplot(data = iris, aes(x = Sepal.Width, y = Petal.Length, color = factor(Specie
 
 \section{Appendix title}
 \label{appendix:xxxx}
-The proof of our claim is left as an exercise to the reader.
+The proof of our claim is left as an exercise for the reader.
 
 \end{appendices}
 
@@ -172,9 +181,12 @@ The proof of our claim is left as an exercise to the reader.
 
 %% R sessionInfo for reproducibility
 %% -----------------------------------------------------------------------------
-<< "sessionInfo", echo = Reproducibility, results = Reproducibility >>=
+<< "sessionInfo1", eval = Reproducibility, results = "asis" >>=
 ## print R sessionInfo to see system information and package versions
 ## used to compile the manuscript (set Reproducibility = FALSE, to not do that)
+cat("\\section*{Computational details}")
+@
+<< "sessionInfo2", echo = Reproducibility, results = Reproducibility >>=
 sessionInfo()
 @
 
