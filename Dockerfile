@@ -1,5 +1,5 @@
 ## set R version (https://hub.docker.com/r/rocker/verse/tags)
-FROM rocker/verse:4.2
+FROM rocker/verse:4.1
 
 ## should PDF be compiled within docker?
 ## by default set to False because tinytex takes ages to download and install
