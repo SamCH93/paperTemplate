@@ -41,5 +41,5 @@ make drun
 
 ## ToDo
 
-[ ] Add .renv support? 
-[ ] Enable pdf compilation from within Docker
+- [ ] Add .renv support? 
+- [ ] Enable pdf compilation from within Docker
