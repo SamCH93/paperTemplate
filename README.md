@@ -34,7 +34,13 @@ make pdf
 ``` bash
 make drun
 ```
-
+   
+   If you want to also run LaTeX from within docker, use instead
+   
+``` bash
+make drunpdf
+```
+   
    This type of workflow is suited for long-term reproducibility, at a later
    stage of research, for example, before submitting the manuscript to a
    preprint server.
@@ -42,6 +48,6 @@ make drun
 
 ## ToDo
 
+- [ ] One file to declare variables (name of files, R version, etc.)
 - [ ] Add .renv support?
-- [ ] Enable pdf compilation from within Docker
 - [ ] GitHub actions integration
