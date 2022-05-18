@@ -1,4 +1,4 @@
-# Academic paper template for R, knitr, make, and Docker workflow
+# Template for scientific papers based on R, knitr, make, and Docker workflow
 
 This repository contains template files to write reproducible academic papers
 using R, knitr, make, and Docker. Click [here](paper/paper.pdf) to view the
@@ -21,6 +21,7 @@ make pdf
 
 2. Work on the same `paper.Rnw` file but compile it to a PDF from inside a
    Docker container which precisely encapsulates the computational environement.
+   This requires Docker (with root rights, otherwise change the Makefile).
    Specify R version in the Docker file. R packages from CRAN will then be
    installed from a CRAN snapshot the last day the specified R version was up to
    date. List all required packages from CRAN in the `CRANpackages.txt` file,
@@ -41,5 +42,5 @@ make drun
 
 ## ToDo
 
-- [ ] Add .renv support? 
+- [ ] Add .renv support?
 - [ ] Enable pdf compilation from within Docker
