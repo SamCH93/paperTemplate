@@ -1,8 +1,9 @@
 all: pdf clean
 
-FILE = paper # name of .Rnw file
-BIB = bibliography # name of .bib file
-BIBSTYLE = apalikedoiurl # name of .bst file
+# names of .Rnw .bib. and .bst files
+FILE = papername
+BIB = bibliography
+BIBSTYLE = apalikedoiurl
 
 ## generate .tex file from .Rnw file with knitr
 tex: $(FILE).Rnw $(BIB).bib $(BIBSTYLE).bst
