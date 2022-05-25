@@ -1,6 +1,6 @@
 all: dbuild drun
 
-FILE = paper
+FILE = paper # specify same name as in paper/Makefile
 
 ## build docker image (requires root access for docker)
 dbuild: Dockerfile
@@ -14,7 +14,7 @@ drun: dbuild
 	-v $(CURDIR):/output \
 		$(FILE)
 ## compile pdf using LaTeX outside docker
-	mv paper.tex paper/paper.tex
+	mv $(FILE).tex paper/$(FILE).tex
 	mkdir -p paper/figure
 	mv figure/* paper/figure
 	rmdir figure/
@@ -27,4 +27,4 @@ drunpdf: dbuild
 	--env pdfdocker="true" \
 	--volume $(CURDIR):/output \
 	$(FILE)
-	mv paper.pdf paper/paper.pdf
+	mv $(FILE).pdf paper/$(FILE).pdf
