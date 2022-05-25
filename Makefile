@@ -6,12 +6,12 @@ FILE=papername
 ## build docker image (requires root access for docker)
 dbuild: Dockerfile
 	docker build \
-    -t $(FILE) .
+	-t $(FILE) .
 
 ## run docker image that produces tex from within docker
 drun: dbuild
 	docker run \
-    --rm \
+	--rm \
 	--env FILE=$(FILE) \
 	-v $(CURDIR):/output \
 		$(FILE)
@@ -25,7 +25,7 @@ drun: dbuild
 ## run docker image that produces pdf from within docker
 drunpdf: dbuild
 	docker run \
-    --rm \
+	--rm \
 	--env pdfdocker="true" \
 	--env FILE=$(FILE) \
 	--volume $(CURDIR):/output \
