@@ -4,7 +4,6 @@
 \usepackage[T1]{fontenc} % umlaut characters
 \usepackage[utf8]{inputenc} % utf8 encoding
 \usepackage[english]{babel} % language specific hyphenation
-\usepackage[dvipsnames]{xcolor} % more named colors
 \usepackage{amsmath, amssymb} % math
 \usepackage{doi} % automatic doi-links
 \usepackage[round]{natbib} % bibliography
@@ -65,9 +64,9 @@
   pdfsubject={},
   pdfkeywords={},
   colorlinks=true,
-  linkcolor=RoyalPurple,
+  linkcolor=blue,
   anchorcolor=black,
-  citecolor=MidnightBlue,
+  citecolor=blue,
   urlcolor=black,
 }
 
@@ -184,7 +183,7 @@ The proof of our claim is left as an exercise for the reader.
 << "sessionInfo1", eval = Reproducibility, results = "asis" >>=
 ## print R sessionInfo to see system information and package versions
 ## used to compile the manuscript (set Reproducibility = FALSE, to not do that)
-cat("\\section*{Computational details}")
+cat("\\newpage \\section*{Computational details}")
 @
 << "sessionInfo2", echo = Reproducibility, results = Reproducibility >>=
 sessionInfo()
