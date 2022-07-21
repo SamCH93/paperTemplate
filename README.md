@@ -1,7 +1,7 @@
 # Template for scientific papers using R + knitr + make + Docker workflow
 
 This repository contains template files to write reproducible academic papers
-using R, knitr, make, and Docker. Click [here](paper/paper.pdf) to view the
+using R, knitr, make, and Docker. Click [here](paper/papername.pdf) to view the
 output.
 
 There are two ways to work on a paper: 
